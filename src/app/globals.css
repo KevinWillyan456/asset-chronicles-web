@@ -1,0 +1,302 @@
+@import 'tailwindcss';
+
+@theme {
+  /* --- Typography -------------------------------------------------------- */
+  --font-display: var(--font-display), 'Cinzel', 'Georgia', serif;
+  --font-sans: var(--font-sans), 'Outfit', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, 'SFMono-Regular', monospace;
+
+  /* --- Ink: deep backdrop blues / purples ------------------------------- */
+  --color-ink-950: #05030c;
+  --color-ink-900: #0a0716;
+  --color-ink-850: #0f0b20;
+  --color-ink-800: #151028;
+  --color-ink-750: #1a1433;
+  --color-ink-700: #211a3f;
+  --color-ink-600: #2c2352;
+  --color-ink-500: #3a2f6b;
+
+  /* --- Arcane: primary violet -------------------------------------------- */
+  --color-arcane-200: #ddd6fe;
+  --color-arcane-300: #c4b5fd;
+  --color-arcane-400: #a78bfa;
+  --color-arcane-500: #8b5cf6;
+  --color-arcane-600: #7c3aed;
+  --color-arcane-700: #6d28d9;
+  --color-arcane-800: #5b21b6;
+
+  /* --- Lilac: soft lavender surfaces ------------------------------------- */
+  --color-lilac-50: #faf7ff;
+  --color-lilac-100: #f3ebff;
+  --color-lilac-200: #e9dcff;
+  --color-lilac-300: #d5befc;
+
+  /* --- Mystic: dark blue / indigo accent --------------------------------- */
+  --color-mystic-300: #a5b4fc;
+  --color-mystic-400: #818cf8;
+  --color-mystic-500: #6366f1;
+  --color-mystic-600: #4f46e5;
+
+  /* --- Gilt: restrained gold ornament ------------------------------------ */
+  --color-gilt-200: #f7ecc9;
+  --color-gilt-300: #f0dca4;
+  --color-gilt-400: #e4c476;
+  --color-gilt-500: #d1a94a;
+  --color-gilt-600: #ab8330;
+
+  /* --- Motion ------------------------------------------------------------ */
+  --animate-scan: scan 2.6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-rise: rise 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-fade: fade 0.22s ease-out both;
+  --animate-shimmer: shimmer 1.6s linear infinite;
+  --animate-pulse-ring: pulse-ring 2.4s ease-out infinite;
+  --animate-spin-slow: spin 1.1s linear infinite;
+
+  @keyframes scan {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    12% {
+      opacity: 1;
+    }
+    88% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-7px);
+    }
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(10px) scale(0.985);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes shimmer {
+    from {
+      background-position: -200% 0;
+    }
+    to {
+      background-position: 200% 0;
+    }
+  }
+
+  @keyframes pulse-ring {
+    0% {
+      transform: scale(0.85);
+      opacity: 0.55;
+    }
+    70% {
+      transform: scale(1.35);
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+}
+
+:root {
+  --surface: #0a0716;
+  --surface-raised: #151028;
+  --hairline: rgba(196, 181, 253, 0.14);
+  --hairline-strong: rgba(196, 181, 253, 0.28);
+  color-scheme: dark;
+}
+
+* {
+  border-color: var(--hairline);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--surface);
+  color: var(--color-lilac-100);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Ambient arcane backdrop used across the app shell. */
+.arcane-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background:
+    radial-gradient(58rem 42rem at 12% -8%, rgba(124, 58, 237, 0.22), transparent 62%),
+    radial-gradient(46rem 40rem at 96% 4%, rgba(79, 70, 229, 0.2), transparent 60%),
+    radial-gradient(40rem 34rem at 50% 108%, rgba(109, 40, 217, 0.16), transparent 64%),
+    linear-gradient(180deg, #0a0716 0%, #07050f 100%);
+}
+
+.arcane-backdrop::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 12% 22%, rgba(233, 220, 255, 0.7), transparent),
+    radial-gradient(1px 1px at 68% 14%, rgba(196, 181, 253, 0.6), transparent),
+    radial-gradient(1.5px 1.5px at 84% 62%, rgba(240, 220, 164, 0.55), transparent),
+    radial-gradient(1px 1px at 28% 78%, rgba(233, 220, 255, 0.45), transparent),
+    radial-gradient(1px 1px at 52% 46%, rgba(196, 181, 253, 0.4), transparent),
+    radial-gradient(1.5px 1.5px at 92% 30%, rgba(233, 220, 255, 0.35), transparent),
+    radial-gradient(1px 1px at 6% 56%, rgba(240, 220, 164, 0.4), transparent);
+  opacity: 0.5;
+  animation: fade 1.6s ease-out both;
+}
+
+/* --- Surfaces -------------------------------------------------------------- */
+
+.glass {
+  background: linear-gradient(180deg, rgba(33, 26, 63, 0.72) 0%, rgba(15, 11, 32, 0.78) 100%);
+  backdrop-filter: blur(14px) saturate(1.1);
+  border: 1px solid var(--hairline);
+  box-shadow:
+    0 1px 0 0 rgba(233, 220, 255, 0.05) inset,
+    0 24px 48px -32px rgba(5, 3, 12, 0.9);
+}
+
+.glass-strong {
+  background: linear-gradient(180deg, rgba(44, 35, 82, 0.92) 0%, rgba(16, 12, 34, 0.95) 100%);
+  backdrop-filter: blur(18px) saturate(1.15);
+  border: 1px solid var(--hairline-strong);
+  box-shadow:
+    0 1px 0 0 rgba(233, 220, 255, 0.08) inset,
+    0 32px 64px -28px rgba(5, 3, 12, 0.95);
+}
+
+/* Thin luminous top edge, used on primary cards. */
+.ornament-edge {
+  position: relative;
+}
+
+.ornament-edge::before {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(196, 181, 253, 0.55) 22%,
+    rgba(240, 220, 164, 0.65) 50%,
+    rgba(196, 181, 253, 0.55) 78%,
+    transparent
+  );
+  opacity: 0.75;
+}
+
+.glow-arcane {
+  box-shadow:
+    0 0 0 1px rgba(139, 92, 246, 0.35),
+    0 0 26px -6px rgba(139, 92, 246, 0.55);
+}
+
+.text-glow {
+  text-shadow: 0 0 18px rgba(167, 139, 250, 0.45);
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(196, 181, 253, 0.06) 0%,
+    rgba(196, 181, 253, 0.16) 50%,
+    rgba(196, 181, 253, 0.06) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s linear infinite;
+}
+
+/* --- Scrollbars ------------------------------------------------------------ */
+
+::selection {
+  background: rgba(139, 92, 246, 0.4);
+  color: #fff;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(139, 92, 246, 0.4) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.35);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(167, 139, 250, 0.55);
+  background-clip: content-box;
+}
+
+/* --- Accessibility --------------------------------------------------------- */
+
+:focus-visible {
+  outline: 2px solid var(--color-arcane-400);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Native select/date controls on dark surfaces. */
+select option {
+  background-color: #151028;
+  color: #f3ebff;
+}
+
+input[type='date']::-webkit-calendar-picker-indicator {
+  filter: invert(0.8) sepia(0.4) saturate(4) hue-rotate(220deg);
+  cursor: pointer;
+}

@@ -1,0 +1,44 @@
+{
+  "name": "asset-chronicles",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "lint:ci": "eslint . --max-warnings=0",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "format:ci": "prettier . --check",
+    "fix": "pnpm format && pnpm lint:fix && node -e \"console.log('\\x1b[32mCódigo formatado e lint corrigido!\\x1b[0m')\"",
+    "check:ts": "tsc --noEmit",
+    "check:ts:watch": "tsc --noEmit --watch",
+    "check": "pnpm check:ts && pnpm lint:ci && pnpm format:ci && node -e \"console.log('\\x1b[32mTodas as verificações passaram!\\x1b[0m')\""
+  },
+  "dependencies": {
+    "next": "16.3.6",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "babel-plugin-react-compiler": "1.0.0",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.6",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-perfectionist": "^5.13.0",
+    "globals": "^17.14.0",
+    "prettier": "^3.9.9",
+    "prettier-plugin-tailwindcss": "^0.8.1",
+    "tailwindcss": "^4",
+    "typescript": "^5",
+    "typescript-eslint": "^8.72.1"
+  },
+  "packageManager": "pnpm@12.6.0"
+}
